@@ -15,7 +15,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello(){
-        return "hello";
+        return "hello, Welcome";
     }
     @GetMapping("/hello/dto")
     public HelloResponseDto helloDto(@RequestParam("id") String id){
