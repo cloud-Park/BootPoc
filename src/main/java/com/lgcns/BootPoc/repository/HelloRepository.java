@@ -3,7 +3,7 @@ package com.lgcns.BootPoc.repository;
 import com.lgcns.BootPoc.web.dto.HelloResponseDto;
 import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class HelloRepository {
 
     public HelloResponseDto searchById(String id){

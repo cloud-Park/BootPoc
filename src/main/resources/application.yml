@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://54.180.69.255:3306/poc
+    username: swa
+    password: swa1234#
+    driver-class-name: org.mariadb.jdbc.Driver
+    sql-script-encoding: UTF-8
+
+
+mybatis:
+  type-aliases-package: com.lgcns.BootPoc.repository
+  mapper-locations: classpath:sql/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
