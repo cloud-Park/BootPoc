@@ -3,10 +3,14 @@ package com.lgcns.BootPoc.repository;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
+
+@RedisHash("userEntity")
 @Getter
 @NoArgsConstructor
-public class UserEntity {
+public class UserEntity implements Serializable {
 
     private String id;
     private String pwd;

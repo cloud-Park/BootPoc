@@ -4,11 +4,13 @@ import com.lgcns.BootPoc.service.HelloService;
 import com.lgcns.BootPoc.web.dto.HelloResponseDto;
 import com.lgcns.BootPoc.web.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -31,4 +33,6 @@ public class HelloController {
     public List<UserResponseDto> userDto(){
         return helloService.findAll();
     }
+
+
 }

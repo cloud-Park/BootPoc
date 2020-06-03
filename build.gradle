@@ -34,7 +34,13 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+	implementation 'org.springframework.session:spring-session-data-redis'
+	// spring-data-redis
+	compile('org.springframework.boot:spring-boot-starter-data-redis')
+	//embedded-redis
+	compile group: 'it.ozimov', name: 'embedded-redis', version: '0.7.2'
+
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
@@ -42,9 +48,7 @@ dependencies {
 	implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client',version:'2.4.1'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 
