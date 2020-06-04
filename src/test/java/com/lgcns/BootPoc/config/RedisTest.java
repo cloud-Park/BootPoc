@@ -19,7 +19,7 @@ public class RedisTest {
 
     @After
     public void tearDown() throws Exception{
-        userRedisRepository.deleteAll();
+//        userRedisRepository.deleteAll();
     }
 
     @Test
