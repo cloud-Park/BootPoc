@@ -1,10 +1,9 @@
-package com.lgcns.BootPoc.service;
+package com.lgcns.BootPoc.template.hello.service;
 
-import com.lgcns.BootPoc.repository.HelloRepository;
-import com.lgcns.BootPoc.repository.UserEntity;
-import com.lgcns.BootPoc.repository.UserRepository;
-import com.lgcns.BootPoc.web.dto.HelloResponseDto;
-import com.lgcns.BootPoc.web.dto.UserResponseDto;
+import com.lgcns.BootPoc.template.hello.repository.HelloRepository;
+import com.lgcns.BootPoc.template.hello.repository.UserRepository;
+import com.lgcns.BootPoc.template.hello.dto.HelloResponseDto;
+import com.lgcns.BootPoc.template.hello.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,6 @@
-package com.lgcns.BootPoc.web.dto;
+package com.lgcns.BootPoc.template.hello.dto;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 

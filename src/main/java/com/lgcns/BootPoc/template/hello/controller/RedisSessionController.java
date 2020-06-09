@@ -1,9 +1,5 @@
-package com.lgcns.BootPoc.web;
+package com.lgcns.BootPoc.template.hello.controller;
 
-import com.lgcns.BootPoc.config.UserRedisRepository;
-import com.lgcns.BootPoc.repository.UserEntity;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
