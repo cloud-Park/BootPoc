@@ -1,16 +1,14 @@
-package com.lgcns.BootPoc.web;
+package com.lgcns.BootPoc.template.hello.controller;
 
-import com.lgcns.BootPoc.service.HelloService;
-import com.lgcns.BootPoc.web.dto.HelloResponseDto;
-import com.lgcns.BootPoc.web.dto.UserResponseDto;
+import com.lgcns.BootPoc.template.hello.service.HelloService;
+import com.lgcns.BootPoc.template.hello.dto.HelloResponseDto;
+import com.lgcns.BootPoc.template.hello.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
-package com.lgcns.BootPoc.repository;
+package com.lgcns.BootPoc.template.hello.repository;
 
-import com.lgcns.BootPoc.web.dto.HelloResponseDto;
+import com.lgcns.BootPoc.template.hello.dto.HelloResponseDto;
 import org.springframework.stereotype.Repository;
 
 @Repository

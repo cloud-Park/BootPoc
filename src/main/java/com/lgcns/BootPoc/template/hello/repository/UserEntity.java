@@ -1,4 +1,4 @@
-package com.lgcns.BootPoc.repository;
+package com.lgcns.BootPoc.template.hello.repository;
 
 import lombok.Builder;
 import lombok.Getter;

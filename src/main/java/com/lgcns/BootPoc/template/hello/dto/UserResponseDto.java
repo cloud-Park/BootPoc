@@ -1,6 +1,6 @@
-package com.lgcns.BootPoc.web.dto;
+package com.lgcns.BootPoc.template.hello.dto;
 
-import com.lgcns.BootPoc.repository.UserEntity;
+import com.lgcns.BootPoc.template.hello.repository.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 
