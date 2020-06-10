@@ -1,5 +1,6 @@
 package com.lgcns.BootPoc.web.dto;
 
+import com.lgcns.BootPoc.template.hello.repository.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -17,6 +18,10 @@ public class UserRequestDto {
     }
 
     public UserEntity toEntity(){
-        return;
+        return UserEntity.builder()
+                .id(id)
+                .pwd("junki!123")
+                .email("pjk430@naver.com")
+                .build();
     }
 }
