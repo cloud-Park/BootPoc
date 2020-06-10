@@ -1,4 +1,4 @@
-package com.lgcns.BootPoc.template.hello.controller;
+package com.lgcns.BootPoc.template.cache.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
