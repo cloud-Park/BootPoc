@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lgcns.BootPoc.template.hello.repository.UserRepository">
-    <select id="findAll" resultType="UserEntity">
+    <select id="findAll" resultType="com.lgcns.BootPoc.template.hello.repository.UserEntity">
         select * from user;
     </select>
 </mapper>

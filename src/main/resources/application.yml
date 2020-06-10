@@ -1,5 +1,10 @@
 spring:
   datasource:
+    hikari:
+      driver-class-name: org.mariadb.jdbc.Driver
+      jdbc-url: jdbc:mariadb://54.180.69.255:3306/poc
+      username: swa
+      password: swa1234#
     url: jdbc:mariadb://54.180.69.255:3306/poc
     username: swa
     password: swa1234#
@@ -13,7 +18,7 @@ spring:
 
 
 mybatis:
-  type-aliases-package: com.lgcns.BootPoc.template.hello.repository
+  #type-aliases-package: com.lgcns.BootPoc.template.hello.repository
   mapper-locations: classpath:sql/*.xml
   configuration:
     map-underscore-to-camel-case: true
