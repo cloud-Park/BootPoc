@@ -11,12 +11,20 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     sql-script-encoding: UTF-8
   redis:
-    host: localhost
+    host: local
     port: 6379
   profiles:
     active: local
   session:
     store-type: redis
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+  freemarker:
+    cache: false
+
 
 
 mybatis:
