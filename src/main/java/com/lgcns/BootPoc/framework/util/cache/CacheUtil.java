@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -34,14 +35,19 @@ public class CacheUtil {
     public static Object searchList(){
         Set<String> keys = redisTemplate.keys("*");
         Object obj;
+        ArrayList<HashMap<String,Object>> list= new ArrayList<>();
+        HashMap<String, Object> map;
         for(String key : keys){
-            System.out.println("key="+key);
+            map = new HashMap<>();
             obj = redisTemplate.opsForValue().get(key);
+            System.out.println("key="+key);
             System.out.println("value="+obj);
-            System.out.println(obj.getClass());
+
+            map.put(key,obj);
+            list.add(map);
         }
 
-        return true;
+        return list;
     }
 
     public static boolean updateData(String key,Object data){

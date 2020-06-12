@@ -3,10 +3,12 @@ package com.lgcns.BootPoc.template.hello.repository;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
 
+@ToString
 @RedisHash("userEntity")
 @Getter
 @NoArgsConstructor
