@@ -31,7 +31,7 @@ public class DataSourceConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Bean
+    @Bean(name = "sqlSessionTemplate")
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
     }

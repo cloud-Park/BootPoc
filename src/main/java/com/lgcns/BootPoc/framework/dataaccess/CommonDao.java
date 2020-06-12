@@ -11,8 +11,6 @@ public interface CommonDao {
 
     <T> T select(String var1, Object var2);
 
-    <T> T select(String var1, Object var2, String var3);
-
     <E> List<E> selectList(String var1);
 
     <E> List<E> selectList(String var1, Object var2);

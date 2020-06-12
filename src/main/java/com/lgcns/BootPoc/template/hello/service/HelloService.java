@@ -1,5 +1,6 @@
 package com.lgcns.BootPoc.template.hello.service;
 
+import com.lgcns.BootPoc.framework.dataaccess.CommonDao;
 import com.lgcns.BootPoc.template.hello.repository.HelloRepository;
 import com.lgcns.BootPoc.template.hello.repository.UserRepository;
 import com.lgcns.BootPoc.template.hello.dto.HelloResponseDto;
@@ -19,14 +20,15 @@ public class HelloService {
     private final UserRepository userRepository;
 
     @Autowired
-    private final SqlSessionTemplate sqlSessionTemplate;
+    private final CommonDao commonDao;
 
     public HelloResponseDto searchById(String id){
         return helloRepository.searchById(id);
     }
 
     public List<UserResponseDto> findAll(){
-        List<UserResponseDto> list = sqlSessionTemplate.selectList("com.lgcns.BootPoc.template.hello.repository.UserRepository.findAll");
+        List<UserResponseDto> list = commonDao.selectList("com.lgcns.BootPoc.template.hello.repository.UserRepository.findAll");
+        //List<UserResponseDto> list = sqlSessionTemplate.selectList("com.lgcns.BootPoc.template.hello.repository.UserRepository.findAll");
         System.out.println(list);
         return list;
 

@@ -3,34 +3,49 @@ package com.lgcns.BootPoc.framework.dataaccess.mybatis;
 import com.lgcns.BootPoc.framework.dataaccess.CommonDao;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Repository
 public class MybatisCommonDao implements CommonDao, InitializingBean {
+
+    @Autowired
+    protected SqlSessionTemplate sqlSessionTemplate;
+
+   private String a = "sqlSessionFactory";
+    protected Map<String, SqlSession> localSqlSessionMap = new HashMap();
+
+
+   /*public MybatisCommonDao(SqlSessionTemplate sqlSessionTemplate) {
+        this.sqlSessionTemplate = sqlSessionTemplate;
+    }*/
+
     @Override
     public <T> T select(String var1) {
-        return null;
+        return sqlSessionTemplate.selectOne(var1);
     }
 
     @Override
     public <T> T select(String var1, Object var2) {
-        return null;
-    }
-
-    @Override
-    public <T> T select(String var1, Object var2, String var3) {
-        return null;
+        return sqlSessionTemplate.selectOne(var1, var2);
     }
 
     @Override
     public <E> List<E> selectList(String var1) {
-        return null;
+        return sqlSessionTemplate.selectList(var1);
     }
 
     @Override
     public <E> List<E> selectList(String var1, Object var2) {
-        return null;
+        return sqlSessionTemplate.selectList(var1, var2);
     }
 
     @Override
@@ -40,7 +55,7 @@ public class MybatisCommonDao implements CommonDao, InitializingBean {
 
     @Override
     public <E> List<E> selectList(String var1, Object var2, RowBounds var3) {
-        return null;
+        return sqlSessionTemplate.selectList(var1, var2, var3);
     }
 
     @Override
@@ -100,12 +115,12 @@ public class MybatisCommonDao implements CommonDao, InitializingBean {
 
     @Override
     public int insert(String var1) {
-        return 0;
+        return sqlSessionTemplate.insert(var1);
     }
 
     @Override
     public int insert(String var1, Object var2) {
-        return 0;
+        return sqlSessionTemplate.insert(var1,var2);
     }
 
     @Override
@@ -115,12 +130,12 @@ public class MybatisCommonDao implements CommonDao, InitializingBean {
 
     @Override
     public int update(String var1) {
-        return 0;
+        return sqlSessionTemplate.update(var1);
     }
 
     @Override
     public int update(String var1, Object var2) {
-        return 0;
+        return sqlSessionTemplate.update(var1, var2);
     }
 
     @Override
@@ -130,12 +145,12 @@ public class MybatisCommonDao implements CommonDao, InitializingBean {
 
     @Override
     public int delete(String var1) {
-        return 0;
+        return sqlSessionTemplate.delete(var1);
     }
 
     @Override
     public int delete(String var1, Object var2) {
-        return 0;
+        return sqlSessionTemplate.delete(var1, var2);
     }
 
     @Override
