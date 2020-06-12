@@ -32,6 +32,7 @@ public class HelloService {
         System.out.println(list);
         return list;
 
+
         //return userRepository.findAll().stream().map(UserResponseDto::new).collect(Collectors.toList());
     }
 }
