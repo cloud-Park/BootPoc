@@ -15,6 +15,14 @@ public interface CommonDao {
 
     <E> List<E> selectList(String var1, Object var2);
 
+    <T> T selectWithCache(String var1, String var2);
+
+    <T> T selectWithCache(String var1, Object var2, String var3);
+
+    <E> List<E> selectListWithCache(String var1, String var2);
+
+    <E> List<E> selectListWithCache(String var1, Object var2, String var3);
+
     <E> List<E> selectList(String var1, Object var2, String var3);
 
     <E> List<E> selectList(String var1, Object var2, RowBounds var3);

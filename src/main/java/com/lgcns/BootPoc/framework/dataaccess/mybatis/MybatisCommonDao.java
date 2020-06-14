@@ -49,6 +49,30 @@ public class MybatisCommonDao implements CommonDao, InitializingBean {
     }
 
     @Override
+    @Cacheable(value = "SelectOneCache", key = "#var1 + '.' + #var2")
+    public <T> T selectWithCache(String var1, String var2) {
+        return null;
+    }
+
+    @Override
+    @Cacheable(value = "SelectOneCache", key = "#var1 + '.' + #var3")
+    public <T> T selectWithCache(String var1, Object var2, String var3) {
+        return null;
+    }
+
+    @Override
+    @Cacheable(value = "SelectOneCache", key = "#var1 + '.' + #var2")
+    public <E> List<E> selectListWithCache(String var1, String var2) {
+        return null;
+    }
+
+    @Override
+    @Cacheable(value = "SelectOneCache", key = "#var1 + '.' + #var3")
+    public <E> List<E> selectListWithCache(String var1, Object var2, String var3) {
+        return null;
+    }
+
+    @Override
     public <E> List<E> selectList(String var1, Object var2, String var3) {
         return null;
     }
