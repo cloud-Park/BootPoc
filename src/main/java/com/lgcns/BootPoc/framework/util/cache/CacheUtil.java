@@ -60,7 +60,7 @@ public class CacheUtil {
     }
 
     public static boolean deleteData(String key){
-        //해당 key가 존재하지 않을 때,
+        //해당 key가 존재하지 않을 때 ,
         if(searchData(key)==null)
             return false;
 
