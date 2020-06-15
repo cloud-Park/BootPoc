@@ -27,7 +27,8 @@ public class HelloService {
     }
 
     public List<UserResponseDto> findAll(){
-        List<UserResponseDto> list = commonDao.selectList("com.lgcns.BootPoc.template.hello.repository.UserRepository.findAll");
+        //List<UserResponseDto> list = commonDao.selectList("com.lgcns.BootPoc.template.hello.repository.UserRepository.findAll");
+        List<UserResponseDto> list = commonDao.selectListWithCache("com.lgcns.BootPoc.template.hello.repository.UserRepository.findAll", "all");
         //List<UserResponseDto> list = sqlSessionTemplate.selectList("com.lgcns.BootPoc.template.hello.repository.UserRepository.findAll");
         System.out.println(list);
         return list;
