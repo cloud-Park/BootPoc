@@ -25,22 +25,23 @@ public class CacheUtilTest {
                 .email("pjk430@naver.com")
                 .build();
 
-//        CacheUtil.saveData("key1", userEntity);
-//        UserEntity userEntity1 = (UserEntity) CacheUtil.searchData("key1");
-//        System.out.println(userEntity1.getId());
-//
-//        userEntity = UserEntity.builder()
-//                .id("pjk212")
-//                .pwd("jiji")
-//                .email("12")
-//                .build();
-//        CacheUtil.updateData("key1",userEntity);
-//        userEntity1 = (UserEntity) CacheUtil.searchData("key1");
-//        System.out.println(userEntity1.getId());
-//
-//        CacheUtil.deleteData("key1");
-//        userEntity1 = (UserEntity) CacheUtil.searchData("key1");
-//        System.out.println(userEntity1.getId());
+        CacheUtil.saveData("key1", userEntity);
+        UserEntity userEntity1 = (UserEntity) CacheUtil.searchData("key1");
+        System.out.println(userEntity1.getId());
+
+        userEntity = UserEntity.builder()
+                .id("pjk212")
+                .pwd("jiji")
+                .email("12")
+                .build();
+        CacheUtil.updateData("key1",userEntity);
+        userEntity1 = (UserEntity) CacheUtil.searchData("key1");
+        System.out.println(userEntity1.getId());
+
+        CacheUtil.deleteData("key1");
+        userEntity1 = (UserEntity) CacheUtil.searchData("key1");
+        System.out.println(userEntity1.getId());
+        //////
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("map1","data1");
         hashMap.put("map2","data2");
@@ -54,5 +55,7 @@ public class CacheUtilTest {
         CacheUtil.saveData("key3", arrayList);
 
         CacheUtil.searchList();
+
+
     }
 }

@@ -1,6 +1,7 @@
 package com.lgcns.BootPoc.config;
 
 import com.lgcns.BootPoc.template.hello.repository.UserEntity;
+import org.apache.catalina.User;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
