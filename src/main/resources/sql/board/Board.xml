@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.Board">
+    <select id="searchList" resultType="com.lgcns.BootPoc.board.dto.BoardResultDto" parameterType="com.lgcns.BootPoc.board.dto.BoardRequestDto">
+        SELECT board_id as boardId, subject, view_cnt as viewCnt, writer, write_date as writeDate, mod_date as modDate
+        FROM board
+        ORDER BY boardId DESC
+        LIMIT #{start}, #{length};
+    </select>
+    <select id="total" resultType="int">
+        SELECT count('x') as CNT
+        FROM board;
+    </select>
+</mapper>
