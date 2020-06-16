@@ -1,8 +1,6 @@
 package com.lgcns.BootPoc.board.service;
 
-import com.lgcns.BootPoc.board.dto.BoardListResultDto;
-import com.lgcns.BootPoc.board.dto.BoardRequestDto;
-import com.lgcns.BootPoc.board.dto.BoardResultDto;
+import com.lgcns.BootPoc.board.dto.*;
 import com.lgcns.BootPoc.framework.dataaccess.CommonDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +32,18 @@ public class BoardService {
         boardListResultDto.setData(list);
 
         return boardListResultDto;
+    }
+
+    public BoardDto searchById(int boardId){
+        BoardDto boardDto = commonDao.select("board.Board.searchById", boardId);
+        return boardDto;
+    }
+
+    public void insertBoard(BoardDto boardDto){
+        boardDto.getSubject();
+        boardDto.getContent();
+        boardDto.getWriter();
+        commonDao.insert("board.Board.insertBoard", boardDto);
     }
 
 }

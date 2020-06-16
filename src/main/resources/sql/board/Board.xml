@@ -11,4 +11,13 @@
         SELECT count('x') as CNT
         FROM board;
     </select>
+    <select id="searchById" resultType="com.lgcns.BootPoc.board.dto.BoardDto">
+        SELECT board_id as boardId, subject, content, writer, write_date as writeDate
+        FROM board
+        WHERE board_id= #{boardId};
+    </select>
+    <insert id="insertBoard" parameterType="com.lgcns.BootPoc.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="boardId">
+        INSERT INTO board(subject, content, view_cnt, writer, write_date, mod_date)
+        VALUES (#{subject}, #{content}, 0, #{writer}, NOW(), NOW());
+    </insert>
 </mapper>

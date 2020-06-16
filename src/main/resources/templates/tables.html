@@ -17,6 +17,7 @@
 
   <!-- Custom styles for this template -->
   <link th:href="@{css/sb-admin-2.min.css}" rel="stylesheet">
+  <link th:href="@{https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css}" rel="stylesheet">
 
   <!-- Custom styles for this page -->
   <link th:href="@{vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
@@ -69,18 +70,6 @@
                       <th>View Count</th>
                     </tr>
                   </tfoot>
-                  <tbody>
-<!--                    <th:block th:each="board: ${boardList}" >-->
-<!--                      <tr>-->
-<!--                        <td th:text="${board.boardId}">board Id</td>-->
-<!--                        <td th:text="${board.subject}">subjcet</td>-->
-<!--                        <td th:text="${board.writer}">Writer</td>-->
-<!--                        <td th:text="${board.writeDate}">Write Date</td>-->
-<!--                        <td th:text="${board.modDate}">Mode Date</td>-->
-<!--                        <td th:text="${board.viewCnt}">View Count</td>-->
-<!--                      </tr>-->
-<!--                    </th:block>-->
-                  </tbody>
                 </table>
               </div>
             </div>
@@ -145,6 +134,7 @@
   <!-- Page level plugins -->
   <script th:src="@{vendor/datatables/jquery.dataTables.min.js}"></script>
   <script th:src="@{vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+  <script th:src="@{https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js}"></script>
 
   <!-- Page level custom scripts -->
   <script th:src="@{js/demo/datatables-demo.js}"></script>
