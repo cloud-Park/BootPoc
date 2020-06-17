@@ -12,15 +12,16 @@
     <title>Tables</title>
 
     <!-- Custom fonts for this template -->
-    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link th:href="@{https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link th:href="@{css/sb-admin-2.min.css}" rel="stylesheet">
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link th:href="@{vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
-
+    <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+    <!-- jquery cdn
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -219,36 +220,57 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Cache</h1>
-
+                <th:block th:if="${cache.type=='add'}">
+                    <h1 class="h3 mb-2 text-gray-800">Cache 추가</h1>
+                </th:block>
+                <th:block th:unless="${cache.type=='add'}">
+                    <h1 class="h3 mb-2 text-gray-800">Cache 수정</h1>
+                </th:block>
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                    </div>
                     <div class="card-body">
-                        <input type="text"/>
-                        <input type="text"/>
-                            <table>
-                                <th>key</th>
-                                <th>value</th>
-                                <span th:each="arry : ${test}">
-                                <tr th:each="map: ${arry}">
-                                    <td th:text="${map.key}"></td>
-                                    <td th:text="${map.value}"></td>
-                                </tr>
-                                </span>
-                            </table>
 
+                        <th:block th:if="${cache.type=='add'}">
+                            <label th:for="title">Key</label>
+                            <input type="text" id="addKey">
+                        </th:block>
+                        <th:block th:unless="${cache.type=='add'}">
+                            <label th:for="title">outerKey</label>
+                            <input type="text" id="updateOuterKey" th:value="${cache.key}" readonly>
+                            <br>
+                            <label th:for="title">innerKey</label>
+                            <input type="text" id="updateInnerKey" placeholder="다중 값 추가 시 입력">
+                        </th:block>
+                        &nbsp&nbsp
+                        <label th:for="title">Value</label>
+                        <th:block th:if="${cache.type=='add'}">
+                            <input type="text" id="addValue">
+                        </th:block>
+                        <th:block th:unless="${cache.type=='add'}">
+                            <input type="text" id="updateValue" th:value="${cache.value}" >
+                        </th:block>
+                        <th:block th:if="${cache.type=='add'}">
+                        <br><br>
+                            * 다중 값 입력 예<br>
+                            key값 - outKey/key1,key2,key3<br>
+                            val값 - val1,val2,val3
+                        </th:block>
 
+                        <br><br><br>
+                        <th:block th:if="${cache.type=='add'}">
+                            <input type="button" id="addBtn" class="btn btn-primary" value="추가">
+                        </th:block>
+                        <th:block th:unless="${cache.type=='add'}">
+                            <input type="button" id="updateBtn" class="btn btn-primary" value="수정">
+                            <a th:href="@{'/deleteCache/'+${cache.key}}" role="button" class="btn btn-danger">삭제</a>
+                        </th:block>
+
+                        <a href="/cache" role="button" class="btn btn-secondary"/>취소</a>
                     </div>
                 </div>
-
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- End of Main Content -->
 
@@ -293,21 +315,169 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script th:src="@{vendor/jquery/jquery.min.js}"></script>
-<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
 <!-- Core plugin JavaScript-->
-<script th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
 
 <!-- Custom scripts for all pages-->
-<script th:src="@{js/sb-admin-2.min.js}"></script>
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
 
 <!-- Page level plugins -->
-<script th:src="@{vendor/datatables/jquery.dataTables.min.js}"></script>
-<script th:src="@{vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
 
 <!-- Page level custom scripts -->
-<script th:src="@{js/demo/datatables-demo.js}"></script>
+<script th:src="@{/js/demo/datatables-demo.js}"></script>
+<script th:inline="javascript">
+    $(function(){
+        $('#addBtn').click(function(){
+            //유효성 검사
+            let inputKey = $('#addKey').val();
+            let inputVal = $('#addValue').val();
+
+            if(inputKey==null||inputKey==""){
+                alert("key 입력하세요");
+                return;
+            }
+
+            if(inputVal==null||inputVal==""){
+                alert("value 입력하세요");
+                return;
+            }
+            save(inputKey, inputVal);
+        });
+
+        $('#updateBtn').click(function(){
+            //다중 입력 확인
+            let updateValue = $('#updateValue').val();
+            if(updateValue==''){
+                alert("값을 입력하세요.");
+                return;
+            }
+            let outerKey = $('#updateOuterKey').val();
+            let innerKey = $('#updateInnerKey').val();
+            let value = $('#updateValue').val();
+            update(outerKey,innerKey,value);
+        });
+    })
+
+    function save(inputKey, inputVal) {
+        let outerKey = inputKey.split('/');
+        let data;
+        //다중 입력
+        if(outerKey.length>1){
+            let keys;
+            let values;
+            keys = outerKey[1].split(',');
+            values = inputVal.split(',');
+            if(keys.length!=values.length){
+                alert('key와 value 개수가 일치 하지 않습니다.');
+                return;
+            }
+
+            let map = new Map();
+            for(let i in keys){
+                map.set(keys[i],values[i]);
+            }
+
+            console.log(map);
+            console.log(map.values());
+
+            data = {
+                key : outerKey[0],
+                val : Object.fromEntries(map),
+                size : values.length
+            };
+            console.log(data);
+        }
+        //단일 입력
+        else{
+            data = {
+                key : inputKey,
+                val : inputVal,
+                size : 1
+            };
+        }
+        $.ajax({
+            type : 'POST',
+            url : '/addCache',
+            // dataType : 'json',
+            contentType : 'application/json; charset=utf-8',
+            data : JSON.stringify(data)
+        }).done(function(result){
+            if(result == true){
+                alert('추가 완료');
+                window.location.href = '/cache';
+            }
+            else{
+                alert('해당 key가 이미 존재합니다.')
+            }
+
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+
+    }
+
+    function update(outerKey,inputKey, inputVal) {
+        let data;
+        //다중 입력
+        if(inputKey != ''){
+            let keys = inputKey.split(',');
+            let values = inputVal.split(',');
+
+            if(keys.length!=values.length){
+                alert('key와 value 개수가 일치 하지 않습니다.');
+                return;
+            }
+
+            let map = new Map();
+            for(let i in keys){
+                map.set(keys[i],values[i]);
+            }
+
+            console.log(map);
+            console.log(map.values());
+
+            data = {
+                key : outerKey,
+                val : Object.fromEntries(map),
+                size : values.length
+            };
+            console.log(data);
+        }
+        //단일 입력
+        else{
+            data = {
+                key : outerKey,
+                val : inputVal,
+                size : 1
+            };
+        }
+        $.ajax({
+            type : 'POST',
+            url : '/updateCache',
+            // dataType : 'json',
+            contentType : 'application/json; charset=utf-8',
+            data : JSON.stringify(data)
+        }).done(function(result){
+            if(result == true){
+                alert('수정 완료');
+                window.location.href = '/cache';
+            }
+            else{
+                alert('수정 실패')
+            }
+
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+
+    }
+
+</script>
 
 </body>
 
