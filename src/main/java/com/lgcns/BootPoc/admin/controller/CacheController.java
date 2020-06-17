@@ -1,4 +1,4 @@
-package com.lgcns.BootPoc.template.hello.controller;
+package com.lgcns.BootPoc.admin.controller;
 
 import com.lgcns.BootPoc.framework.util.cache.CacheUtil;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.lgcns.BootPoc.template.hello.service;
+package com.lgcns.BootPoc.admin.service;
 
 import com.lgcns.BootPoc.framework.util.cache.CacheUtil;
 import org.springframework.stereotype.Service;
