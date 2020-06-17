@@ -22,6 +22,8 @@ spring:
       enabled: true
     restart:
       enabled: true
+  thymeleaf:
+    cache: false
   freemarker:
     cache: false
 
