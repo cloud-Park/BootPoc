@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class LoginContoller {
 
-    @GetMapping("index")
+    @GetMapping("/")
     public String index(){
-        return "index";
+        return "redirect:/tables";
     }
 
     @GetMapping("register")
