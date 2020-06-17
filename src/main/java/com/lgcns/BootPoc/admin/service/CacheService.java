@@ -5,20 +5,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CacheService {
-    public void save(){
-
+    public boolean save(String key, Object data){
+        return CacheUtil.saveData(key,data);
     }
     public Object searchByKey(String key){
-
         return CacheUtil.searchData(key);
     }
-    public void searchList(){
-
+    public Object searchList(){
+        return CacheUtil.searchList();
     }
-    public void delete(){
-
+    public boolean delete(String key){
+        return CacheUtil.deleteData(key);
     }
-    public void modify(){
-
+    public boolean update(String key, Object data){
+        return CacheUtil.updateData(key, data);
     }
 }

@@ -1,29 +1,30 @@
 package com.lgcns.BootPoc.admin.controller;
 
-import com.lgcns.BootPoc.framework.util.cache.CacheUtil;
+import com.lgcns.BootPoc.admin.service.CacheService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor
 @Controller
 public class CacheViewController {
-    @GetMapping("/cache")
-    public String view(Model model){
+    private final CacheService cacheService;
 
-        Object obj= CacheUtil.searchList();
+    @GetMapping("/cache")
+    public String searchList(Model model){
+        Object obj= cacheService.searchList();
         model.addAttribute("test",obj);
         return "cache-list";
     }
 
     @GetMapping("/deleteCache/{id}")
-    public String deleteCache(@PathVariable String id,Model model){
-        //js에서 ajax로 처리로 변경예정--> 성공 코드만 받고 재조회하지않고, ui만 수정
-//        String delKey = httpServletRequest.getParameter("delKey");
+    public String delete(@PathVariable String id,Model model){
         System.out.println("key =" +id);
-
-        CacheUtil.deleteData(id);
-
-        Object obj = CacheUtil.searchList();
+        //del
+        cacheService.delete(id);
+        //list
+        Object obj = cacheService.searchList();
         model.addAttribute("test",obj);
         return "cache-list";
     }
