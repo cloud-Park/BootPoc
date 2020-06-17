@@ -1,5 +1,6 @@
 package com.lgcns.BootPoc.framework.util.cache;
 import com.lgcns.BootPoc.template.hello.repository.UserEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-
+@Slf4j
 @Component
 public class CacheUtil {
 
@@ -88,7 +89,7 @@ public class CacheUtil {
     }
 
     public static boolean updateData(String key,Object data){
-        System.out.println("update-key="+key+" / "+"date="+data);
+        log.info("updateMethod="+key+" / "+"date="+data);
         //해당 key가 존재하지 않을 때, 수정 불가함
         if(!redisTemplate.hasKey(key))
             return false;

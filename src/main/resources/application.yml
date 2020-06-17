@@ -25,6 +25,10 @@ spring:
   freemarker:
     cache: false
 
+logging:
+  level:
+    root: info
+
 
 
 

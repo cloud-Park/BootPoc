@@ -233,7 +233,7 @@
                                 <th>value</th>
                                 </thead>
                                 <tbody>
-                                <span th:each="arry : ${test}">
+                                <span th:each="arry : ${list}">
                                     <tr th:each="map: ${arry}">
                                         <td th:text="${map.key}"></td>
                                         <td ><a th:href="@{'/updateCachePage/'+${map.key}}" th:text="${map.value}"></a></td>
