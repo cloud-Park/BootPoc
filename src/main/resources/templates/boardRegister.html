@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Board Register</title>
+
+  <!-- Custom fonts for this template-->
+  <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+  <link th:href="@{https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i}" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Begin Page Content -->
+        <div class="container">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800">Register</h1>
+
+
+          <form method="post" th:action="@{/insertBoard}" th:object="${boardDto}">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <div class="form-group row">
+                  <label for="inputSubject" class="col-sm-2 col-form-label">Subject</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputSubject" th:field="*{subject}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="staticWriter" class="col-sm-2 col-form-label">Writer</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="staticWriter" th:field="*{writer}">
+                  </div>
+                </div>
+                <!--
+                <div class="form-group row">
+                  <label for="staticWriteDate" class="col-sm-2 col-form-label">Write Date</label>
+                  <div class="col-sm-4">
+                    <input type="text" readonly class="form-control-plaintext" id="staticWriteDate" value="thymeleaf">
+                  </div>
+                  <label for="staticModDate" class="col-sm-2 col-form-label">Mod Date</label>
+                  <div class="col-sm-4">
+                    <input type="text" readonly class="form-control-plaintext" id="staticModDate" value="thymeleaf">
+                  </div>
+                </div>
+                -->
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <textarea class="form-control" id="inputContent" rows="20" th:field="*{content}"></textarea>
+                </div>
+              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-secondary" th:action="@{/tables}">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; BuildCenter</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript-->
+  <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+</body>
+
+</html>
