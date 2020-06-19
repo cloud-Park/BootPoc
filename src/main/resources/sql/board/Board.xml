@@ -20,4 +20,21 @@
         INSERT INTO board(subject, content, view_cnt, writer, write_date, mod_date)
         VALUES (#{subject}, #{content}, 0, #{writer}, NOW(), NOW());
     </insert>
+    <update id="updateBoard" parameterType="com.lgcns.BootPoc.board.dto.BoardDto">
+        UPDATE board
+        SET subject = #{subject},
+	        content = #{content},
+	        mod_date = NOW()
+        WHERE board_id = #{boardId};
+    </update>
+    <delete id="deleteBoard">
+        DELETE
+        FROM board
+        WHERE board_id = #{boardId};
+    </delete>
+    <update id="updateViewCnt">
+        UPDATE board
+        SET view_cnt = view_cnt+1
+        WHERE board_id = #{boardId};
+    </update>
 </mapper>
