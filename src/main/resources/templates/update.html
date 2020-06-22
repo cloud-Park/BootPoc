@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Board Register</title>
+  <title>Board Update</title>
 
   <!-- Custom fonts for this template-->
   <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -35,34 +35,35 @@
         <div class="container">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Register</h1>
+          <h1 class="h3 mb-4 text-gray-800">Update</h1>
 
 
-          <form method="post" th:action="@{/insertBoard}" th:object="${boardDto}">
+          <form method="post" th:action="@{/updateBoard}" th:object="${boardDto}">
+              <input type="hidden" th:field="${details.boardId}">
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <div class="form-group row">
                   <label for="inputSubject" class="col-sm-2 col-form-label">Subject</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputSubject" th:field="*{subject}">
+                    <input type="text" class="form-control" id="inputSubject" th:field="${details.subject}">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="staticWriter" class="col-sm-2 col-form-label">Writer</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="staticWriter" th:field="*{writer}">
+                    <input type="text" class="form-control" id="staticWriter" th:field="${details.writer}">
                   </div>
                 </div>
               </div>
-              <div class="card-body">
+              <div class="card-body">update.html
                 <div class="form-group">
-                  <textarea class="form-control" id="inputContent" rows="20" th:field="*{content}"></textarea>
+                  <textarea class="form-control" id="inputContent" rows="20" th:field="${details.content}"></textarea>
                 </div>
               </div>
               <div class="row justify-content-md-center">
                 <div class="col-md-auto">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-secondary" th:action="@{/tables}">Cancel</button>
+                <button type="button" class="btn btn-secondary" onclick="location.href='/tables'">Cancel</button>
                 </div>
               </div>
             </div>

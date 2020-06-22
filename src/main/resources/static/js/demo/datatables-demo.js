@@ -1,6 +1,6 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  var tables = $('#dataTable').DataTable( {
+  $('#dataTable').DataTable( {
     "processing": true,
     "serverSide": true,
     "select": {

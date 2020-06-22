@@ -5,6 +5,7 @@ import com.lgcns.BootPoc.framework.dataaccess.CommonDao;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -39,11 +40,24 @@ public class BoardService {
         return boardDto;
     }
 
+    @Transactional
     public void insertBoard(BoardDto boardDto){
-        boardDto.getSubject();
-        boardDto.getContent();
-        boardDto.getWriter();
         commonDao.insert("board.Board.insertBoard", boardDto);
+    }
+
+    @Transactional
+    public void updateBoard(BoardDto boardDto){
+        int update = commonDao.update("board.Board.updateBoard", boardDto);
+    }
+
+    @Transactional
+    public void deleteBoard(int boardId){
+        int del = commonDao.delete("board.Board.deleteBoard", boardId);
+    }
+
+    @Transactional
+    public void updateViewCnt(int boardId){
+        int update = commonDao.update("board.Board.updateViewCnt", boardId);
     }
 
 }

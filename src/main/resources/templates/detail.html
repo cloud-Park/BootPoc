@@ -57,20 +57,12 @@
 
             </div>
           </div>
+
             <div class="row justify-content-md-center">
             <div class="col-md-auto">
-              <a href="#" class="btn btn-primary btn-icon-split">
-                <span class="icon text-white-50">
-                  <i class="fas fa-flag"></i>
-                </span>
-                <span class="text">Modify</span>
-              </a>
-              <a href="#" class="btn btn-danger btn-icon-split">
-                <span class="icon text-white-50">
-                  <i class="fas fa-trash"></i>
-                </span>
-                <span class="text">Delete</span>
-              </a>
+              <input type="hidden" th:value="${details.boardId}" id="hiddenId">
+              <button type="button" class="btn btn-primary" id="modBtn">Modify</button>
+              <button type="button" class="btn btn-danger" id="deleteBtn">Delete</button>
             </div>
           </div>
         </div>
@@ -109,6 +101,21 @@
 
   <!-- Custom scripts for all pages-->
   <script th:src="@{/js/sb-admin-2.min.js}"></script>
+  <script th:inline="javascript">
+    $(document).ready(function () {
+      $('#modBtn').on('click', function () {
+        let boardId = $('#hiddenId').val();
+        location.href = "/updateBoard/" + boardId;
+      });
+
+      $('#deleteBtn').on('click',function(){
+        let boardId = $('#hiddenId').val();
+        if(confirm("정말로 삭제하시겠습니까?")){
+          location.href = "/deleteBoard/"+boardId;
+        }
+      });
+    });
+  </script>
 
 </body>
 
