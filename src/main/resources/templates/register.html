@@ -37,26 +37,25 @@
               <form class="user">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="id" placeholder="id">
+                    <input type="text" class="form-control form-control-user" id="inputName" placeholder="name">
                   </div>
 <!--                  <div class="col-sm-6">-->
 <!--                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">-->
 <!--                  </div>-->
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                  <input type="email" class="form-control form-control-user" id="inputEmail" placeholder="Email Address">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                    <input type="password" class="form-control form-control-user" id="inputPassword" placeholder="Password">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                    <input type="password" class="form-control form-control-user" id="repeatPassword" placeholder="Repeat Password">
                   </div>
                 </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                  Register Account
-                </a>
+
+                <input id="signUpBtn" type="button" class="btn btn-primary btn-user btn-block" value="Register Account"/>
               </form>
               <hr>
               <div class="text-center">
@@ -79,7 +78,71 @@
 
   <!-- Custom scripts for all pages-->
   <script th:src="@{js/sb-admin-2.min.js}"></script>
+  <script th:inline="javascript">
+    $(function(){
+      $('#signUpBtn').click(function(){
+        let name = $('#inputName').val();
+        let email = $('#inputEmail').val();
+        let passwd = $('#inputPassword').val();
+        let repasswd = $('#repeatPassword').val();
+        if(name==''||email==''||passwd==''||repasswd==''){
+          alert('모든 값을 입력하세요.');
+          return;
+        }
 
+        if(passwd!=repasswd){
+          alert('패스워드가 일치하지 않습니다.');
+          $('#repeatPassword').val('');
+          return;
+        }
+
+
+        $.ajax({
+          type : 'GET',
+          url : '/duplicateCheck',
+          // dataType : 'json',
+          contentType : 'application/json; charset=utf-8',
+          data : {email : email}
+        }).done(function(result){
+          //중복
+          if(result == true){
+            alert('중복된 email입니다.');
+          }
+        }).fail(function (error) {
+          alert(JSON.stringify(error));
+        });
+
+        let data = {
+          name : name,
+          email : email,
+          passwd : passwd
+        };
+
+
+        $.ajax({
+          type : 'POST',
+          url : '/register',
+          // dataType : 'json',
+          contentType : 'application/json; charset=utf-8',
+          data : JSON.stringify(data)
+        }).done(function(result){
+          if(result == true){
+            alert('회원가입 성공');
+            window.location.href = '/login';
+          }
+          else{
+            alert('회원가입 실패');
+            $('#inputEmail').val('');
+          }
+
+        }).fail(function (error) {
+          alert(JSON.stringify(error));
+        });
+
+
+      });
+    })
+  </script>
 </body>
 
 </html>

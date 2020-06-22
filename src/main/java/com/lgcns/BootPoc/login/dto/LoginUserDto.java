@@ -2,17 +2,24 @@ package com.lgcns.BootPoc.login.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import java.io.Serializable;
+
+@ToString
 @Getter
-public class LoginUserDto {
+public class LoginUserDto implements Serializable {
+    private int userId;
     private String email;
-    private String userName;
-    private String pwd;
+    private String name;
+    private String passwd;
 
     @Builder
-    public LoginUserDto(String email, String userName, String pwd){
+    public LoginUserDto(int userId, String email, String name, String passwd){
+        this.userId = userId;
         this.email = email;
-        this.userName = userName;
-        this.pwd = pwd;
+        this.name = name;
+        this.passwd = passwd;
     }
 }

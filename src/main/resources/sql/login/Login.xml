@@ -2,12 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="login.Login">
     <select id="searchByEmail" resultType="com.lgcns.BootPoc.login.dto.LoginUserDto">
-        SELECT email, name, passwd
+        SELECT user_id AS userId, email, name, passwd
         FROM user
         WHERE email= #{email};
     </select>
-    <insert id="insertUser" parameterType="com.lgcns.BootPoc.login.dto.LoginUserDto">
+    <insert id="insertUser" parameterType="com.lgcns.BootPoc.login.dto.LoginUserDto" useGeneratedKeys="true" keyProperty="userId">
         INSERT INTO user(email, name, passwd)
         VALUES (#{email}, #{name}, #{passwd});
     </insert>
+    <update id="updateUser" parameterType="com.lgcns.BootPoc.login.dto.LoginUserDto">
+        UPDATE user
+        SET email = #{email},
+	        name = #{name},
+	        passwd = #{passwd}
+        WHERE email = #{email};
+    </update>
+    <delete id="deleteUser">
+        DELETE
+        FROM user
+        WHERE email = #{email};
+    </delete>
 </mapper>

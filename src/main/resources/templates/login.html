@@ -41,10 +41,10 @@
                   </div>
                   <form class="user">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" id="passwd" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -52,9 +52,7 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                      Login
-                    </a>
+                    <input type="button" id="loginBtn" class="btn btn-primary btn-user btn-block" value="Login"/>
                   </form>
                   <hr>
                   <div class="text-center">
@@ -82,6 +80,51 @@
   <!-- Custom scripts for all pages-->
   <script th:src="@{js/sb-admin-2.min.js}"></script>
 
+  <script th:inline="javascript">
+    $(function(){
+      $('#loginBtn').click(function(){
+        //유효성 검사
+        let email = $('#email').val();
+        let pwd = $('#passwd').val();
+
+        if(email==null||email==""){
+          alert("email 입력하세요");
+          return;
+        }
+
+        if(pwd==null||pwd==""){
+          alert("passwd 입력하세요");
+          return;
+        }
+
+        let data = {
+          email : email,
+          passwd : pwd,
+          size : 1
+        };
+
+        $.ajax({
+          type : 'POST',
+          url : '/login',
+          // dataType : 'json',
+          contentType : 'application/json; charset=utf-8',
+          data : JSON.stringify(data)
+        }).done(function(result){
+          if(result == true){
+            alert('로그인 성공');
+            window.location.href = '/tables';
+          }
+          else{
+            alert('로그인 실패')
+          }
+
+        }).fail(function (error) {
+          alert(JSON.stringify(error));
+        });
+      });
+
+    })
+  </script>
 </body>
 
 </html>

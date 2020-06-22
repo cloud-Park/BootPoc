@@ -3,23 +3,50 @@ package com.lgcns.BootPoc.login.controller;
 import com.lgcns.BootPoc.login.dto.LoginUserDto;
 import com.lgcns.BootPoc.login.service.LoginService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class LoginController {
     private final LoginService loginService;
 
-    @GetMapping("login")
-    public boolean login(@RequestParam LoginUserDto userDto){
-        if(loginService.searchByEmail(userDto.getEmail())==null)
-            return false;
-        return true;
+    @PostMapping("login")
+    public boolean login(@RequestBody LoginUserDto userDto, HttpSession session){
+        log.info("userDto="+userDto);
+        LoginUserDto user = loginService.searchByEmail(userDto.getEmail());
+        if (user != null) {
+            if (userDto.getPasswd().equals(user.getPasswd())){
+                session.setAttribute("userInfo", user);
+                return true;
+            }
+        }
+        return false;
     }
-    @GetMapping("register")
-    public boolean register(@RequestParam LoginUserDto userDto){
+    @PostMapping("register")
+    public boolean register(@RequestBody LoginUserDto userDto){
+        log.info("userDto="+userDto);
         return loginService.save(userDto);
     }
+
+    @GetMapping("duplicateCheck")
+    public boolean duplicateCheck(@RequestParam String email){
+        log.info("email="+email);
+        if(loginService.searchByEmail(email)!=null)
+            return true;
+        else
+            return false;
+    }
+
+
+    @GetMapping("delUser")
+    public void del(){
+        loginService.delete("123123@naver.com");
+        loginService.delete("123");
+        loginService.delete("1231231");
+    }
+
 }
