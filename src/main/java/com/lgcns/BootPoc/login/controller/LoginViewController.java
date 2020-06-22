@@ -5,20 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@RequiredArgsConstructor
-public class LoginContoller {
+public class LoginViewController {
 
     @GetMapping("/")
     public String index(){
         return "redirect:/tables";
     }
 
-    @GetMapping("register")
+    @GetMapping("registerPage")
     public String register(){
         return "register";
     }
 
-    @GetMapping("login")
+    @GetMapping("loginPage")
     public String login(){
         return "login";
     }
